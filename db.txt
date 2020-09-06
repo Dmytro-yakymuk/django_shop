@@ -1,0 +1,59 @@
+Category
+    name
+    slug
+
+Color
+    name
+
+Size
+    name
+
+Action
+    name
+    color
+
+Brand
+    name
+
+Tags
+    name
+
+
+Product
+    name
+    slug
+    price
+    category - M2M
+    product_code
+    shipping_tax
+    description
+    action - M2M
+    brand - FK
+    tags - M2M
+    created_at
+
+
+Quantity
+    product - FK
+    quantity
+    size - FK
+    color - FK
+
+
+Image
+    name
+    root
+    product - FK
+
+RatingStar
+    value
+
+Rating
+    ip
+    star - FK
+    product - FK
+
+
+SocialNetworks
+    name
+    url
