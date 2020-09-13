@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% load product_tag %}
+{% load static %}
+
+{% block header %}
+	{% include 'include/header.html ' %}
+{% endblock header %}
+
+{% block content %}
+		<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({% static 'images/b-bg7.jpg' %});">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
+						<h1 class="headingIV fwEbold playfair mb-4">Shop</h1>
+						<ul class="list-unstyled breadCrumbs d-flex justify-content-center">
+							<li class="mr-2"><a href="home.html">Home</a></li>
+							<li class="mr-2">/</li>
+							<li class="active">Shop</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- twoColumns -->
+		<div class="twoColumns container pt-lg-23 pb-lg-20 pt-md-16 pb-md-4 pt-10 pb-4">
+			<div class="row">
+				<div class="col-12 col-lg-9 order-lg-3">
+					<!-- content -->
+					<article id="content">
+						<!-- show-head -->
+						<header class="show-head d-flex flex-wrap justify-content-between mb-7">
+							<ul class="list-unstyled viewFilterLinks d-flex flex-nowrap align-items-center">
+								<li class="mr-2"><a href="javascript:void(0);" class="active"><i class="fas fa-th-large"></i></a></li>
+								<li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-list"></i></a></li>
+								<li class="mr-2">Showing 1–9 of 24 results</li>
+							</ul>
+							<!-- sortGroup -->
+							<div class="sortGroup">
+								<div class="d-flex flex-nowrap align-items-center">
+									<strong class="groupTitle mr-2">Sort by:</strong>
+									<div class="dropdown">
+										<button class="dropdown-toggle buttonReset" type="button" id="sortGroup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Default sorting</button>
+										<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="sortGroup">
+											<li><a href="javascript:void(0);">Default Order</a></li>
+											<li><a href="javascript:void(0);">Default Order</a></li>
+											<li><a href="javascript:void(0);">Default Order</a></li>
+											<li><a href="javascript:void(0);">Default Order</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</header>
+						<div class="row">
+							{% for product in product_list %}
+								<!-- featureCol -->
+								<div class="col-12 col-sm-6 col-lg-4 featureCol mb-7">
+									<div class="border">
+										<div class="imgHolder position-relative w-100 overflow-hidden">
+											{% for image in product.image_set.all %}
+												{% if image.root == True %}
+													<img src="{{ image.name.url }}" alt="image description" class="img-fluid w-100">
+												{% endif %}
+											{% endfor %}
+											<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
+												<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
+												<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
+												<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
+												<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
+											</ul>
+										</div>
+										<div class="text-center py-5 px-4">
+											<span class="title d-block mb-2"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></span>
+											<span class="price d-block fwEbold"><del>75.00 $</del>{{ product.price|floatformat:2 }} $</span>
+											<span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">HOT</span>
+											<span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block ml-8">Sale</span>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+							<div class="col-12 pt-3 mb-lg-0 mb-md-6 mb-3">
+								<!-- pagination -->
+								<ul class="list-unstyled pagination d-flex justify-content-center align-items-end">
+									<li><a href="javascript:void(0);"><i class="fas fa-chevron-left"></i></a></li>
+									<li class="active"><a href="javascript:void(0);">1</a></li>
+									<li><a href="javascript:void(0);">2</a></li>
+									<li>...</li>
+									<li><a href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</article>
+				</div>
+				<div class="col-12 col-lg-3 order-lg-1">
+					<!-- sidebar -->
+					<aside id="sidebar">
+						<!-- widget -->
+						<section class="widget overflow-hidden mb-9">
+							<form action="javascript:void(0);" class="searchForm position-relative border">
+								<fieldset>
+									<input type="search" class="form-control" placeholder="Search product...">
+									<button class="position-absolute"><i class="icon-search"></i></button>
+								</fieldset>
+							</form>
+						</section>
+						<!-- widget -->
+						<form action="{% url 'product_filter_json' %}" method="GET" name="filter" class="filter-ranger-form">
+							<section class="widget overflow-hidden mb-9">
+								<h3 class="headingVII fwEbold text-uppercase mb-5">PRODUCT CATEGORIES</h3>
+								<ul class="list-unstyled categoryList mb-0">
+	<!--								{% get_categories as categories %}-->
+									{% for category in view.get_categories %}
+										<li class="mb-5 overflow-hidden">
+											<input name="category" type="checkbox" value="{{ category.id }}">
+											<a href="javascript:void(0);">{{ category.name }} <span class="num border float-right">6</span></a>
+										</li>
+									{% endfor %}
+								</ul>
+							</section>
+
+							<!-- widget -->
+							<section class="widget mb-9">
+								<h3 class="headingVII fwEbold text-uppercase mb-6">Filter by price</h3>
+								<!-- filter ranger form -->
+									<div id="slider-range"></div>
+									<input type="hidden" id="amount1" name="price1">
+									<input type="hidden" id="amount2" name="price2">
+									<div class="get-results-wrap d-flex align-items-center justify-content-between">
+										<button type="submit" class="btn btnTheme btn-shop fwEbold md-round px-3 pt-1 pb-2 text-uppercase">Filter</button>
+										<p id="amount" class="mb-0"></p>
+									</div>
+							</section>
+
+						</form>
+						<!-- widget -->
+						<section class="widget mb-9">
+							<h3 class="headingVII fwEbold text-uppercase mb-6">top rate</h3>
+							{% get_top_product count=2 %}
+						</section>
+						<!-- widget -->
+						<section class="widget mb-9">
+							<h3 class="headingVII fwEbold text-uppercase mb-5">product tags</h3>
+							<ul class="list-unstyled tagNavList d-flex flex-wrap mb-0">
+								<li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Plant</a></li>
+								<li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Floor</a></li>
+								<li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Indoor</a></li>
+								<li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Green</a></li>
+								<li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Healthy</a></li>
+								<li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Cactus</a></li>
+								<li class="text-center"><a href="javascript:void(0);" class="md-round d-block">House plant</a></li>
+								<li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Office tree</a></li>
+							</ul>
+						</section>
+					</aside>
+				</div>
+			</div>
+		</div>
+>
+
+{% endblock content %}
+
+{% block extra-js %}
+	<script src="{% static 'js/scripts.js' %}"></script>
+	<script src="http://twitter.github.com/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
+{% endblock extra-js %}

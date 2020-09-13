@@ -1,0 +1,19 @@
+<ul class="list-unstyled recentListHolder mb-0 overflow-hidden">
+
+    {% for product in top_products %}
+        <li class="mb-6 d-flex flex-nowrap">
+            <div class="alignleft">
+                {% for image in product.image_set.all %}
+                    {% if image.root == True %}
+                        <a href="{{ product.get_absolute_url }}"><img src="{{ image.name.url }}" alt="image description" class="img-fluid"></a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="description-wrap pl-1">
+                <h4 class="headingVII mb-1"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
+                <strong class="price fwEbold d-block;">{{ product.price|floatformat:2 }} $</strong>
+            </div>
+        </li>
+    {% endfor %}
+
+</ul>

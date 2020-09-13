@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+	{% include 'include/header.html ' %}
+{% endblock header %}
+
+{% block content %}
+	<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url(http://placehold.it/1920x300);">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
+					<h1 class="headingIV fwEbold playfair mb-4">Shop</h1>
+					<ul class="list-unstyled breadCrumbs d-flex justify-content-center">
+						<li class="mr-2"><a href="home.html">Home</a></li>
+						<li class="mr-2">/</li>
+						<li class="mr-2"><a href="shop.html">Shop</a></li>
+						<li class="mr-2">/</li>
+						<li class="active">Pellentesque aliquet</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- twoColumns -->
+	<div class="twoColumns container pt-xl-23 pb-xl-20 pt-lg-20 pb-lg-20 py-md-16 py-10">
+		<div class="row mb-6">
+			<div class="col-12 col-lg-6 order-lg-1">
+				<!-- productSliderImage -->
+				<div class="productSliderImage mb-lg-0 mb-4">
+					{% for image in product.image_set.all %}
+						<div>
+							<img src="{{ image.name.url }}" alt="image description" class="img-fluid w-100">
+						</div>
+					{% endfor %}
+
+				</div>
+			</div>
+			<div class="col-12 col-lg-6 order-lg-3">
+				<!-- productTextHolder -->
+				<div class="productTextHolder overflow-hidden">
+					<h2 class="fwEbold mb-2">{{ product.name }}</h2>
+					<ul class="list-unstyled ratingList d-flex flex-nowrap mb-2">
+						<li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+						<li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+						<li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+						<li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+						<li class="mr-2"><a href="javascript:void(0);"><i class="far fa-star"></i></a></li>
+						<li>( {{ product.reviews_set.count }} customer reviews )</li>
+					</ul>
+					<strong class="price d-block mb-5 text-green">{{ product.price|floatformat:2 }} $</strong>
+
+					<ul class="list-unstyled productInfoDetail mb-5 overflow-hidden">
+						<li class="mb-2">Product Code: <span>{{ product.product_code }} </span></li>
+						<li class="mb-2">Quantity: <span>68 Items</span></li>
+						<li class="mb-2">Shipping tax: <span>{{product.shipping_tax}}</span></li>
+					</ul>
+					<ul class="list-unstyled sizeList d-flex flex-wrap mb-4">
+						<li class="text-uppercase mr-6">Size:</li>
+						<li class="mr-2">
+							<label for="check-1">
+								<input id="check-1" checked="checked" type="checkbox">
+								<span class="fake-input"></span>
+								<span class="fake-label">L</span>
+							</label>
+						</li>
+						<li class="mr-2">
+							<label for="check-2">
+								<input id="check-2" type="checkbox">
+								<span class="fake-input"></span>
+								<span class="fake-label">M</span>
+							</label>
+						</li>
+						<li class="mr-2">
+							<label for="check-3">
+								<input id="check-3" type="checkbox">
+								<span class="fake-input"></span>
+								<span class="fake-label">S</span>
+							</label>
+						</li>
+						<li class="mr-2">
+							<label for="check-4">
+								<input id="check-4" type="checkbox">
+								<span class="fake-input"></span>
+								<span class="fake-label">XL</span>
+							</label>
+						</li>
+						<li class="mr-2">
+							<label for="check-5">
+								<input id="check-5" type="checkbox">
+								<span class="fake-input"></span>
+								<span class="fake-label">XXL</span>
+							</label>
+						</li>
+					</ul>
+					<ul class="list-unstyled colorList d-flex flex-wrap mb-8">
+						<li class="text-uppercase mr-2">Color:</li>
+						<li class="mr-3"><a href="javascript:void(0);" class="red rounded"></a></li>
+						<li class="mr-3"><a href="javascript:void(0);" class="yellow rounded"></a></li>
+						<li class="mr-3"><a href="javascript:void(0);" class="purple rounded"></a></li>
+					</ul>
+					<div class="holder overflow-hidden d-flex flex-wrap mb-6">
+						<input type="number" placeholder="1">
+						<a href="javascript:void(0);" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4">Add To Cart <i class="fas fa-arrow-right ml-2"></i></a>
+					</div>
+					<ul class="list-unstyled socialNetwork d-flex flex-wrap mb-sm-11 mb-4">
+						<li class="text-uppercase mr-5">SHARE THIS PRODUCT:</li>
+						<li class="mr-4"><a href="javascript:void(0);" class="fab fa-facebook-f"></a></li>
+						<li class="mr-4"><a href="javascript:void(0);" class="fab fa-google-plus-g"></a></li>
+						<li class="mr-4"><a href="javascript:void(0);" class="fab fa-twitter"></a></li>
+						<li class="mr-4"><a href="javascript:void(0);" class="fab fa-pinterest-p"></a></li>
+					</ul>
+					<ul class="list-unstyled productInfoDetail mb-0">
+						<li class="mb-2">Categories:
+							{% for category in product.category.all %}
+								<a href="javascript:void(0);">{{ category.name }},</a>
+							{% endfor %}
+
+						</li>
+						<li class="mb-2">Tags: <a href="javascript:void(0);">organic food,</a> <a href="javascript:void(0);">fruits,</a> <a href="javascript:void(0);">juice</a></li>
+						<li>Brand: <a href="javascript:void(0);">KFC</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<!-- paggSlider -->
+				<div class="paggSlider">
+
+					{% for image in product.image_set.all %}
+						<div>
+							<div class="imgBlock">
+								<img src="{{ image.name.url }}" alt="image description" class="img-fluid">
+							</div>
+						</div>
+					{% endfor %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- tabSetList -->
+				<ul class="list-unstyled tabSetList d-flex justify-content-center mb-9">
+					<li class="mr-md-20 mr-sm-10 mr-2">
+						<a href="#tab1-0" class="active playfair fwEbold pb-2">Description</a>
+					</li>
+					<li>
+						<a href="#tab2-0" class="playfair fwEbold pb-2">Reviews ( {{ product.reviews_set.count }} )</a>
+					</li>
+				</ul>
+				<!-- tab-content -->
+				<div class="tab-content mb-xl-11 mb-lg-10 mb-md-8 mb-5">
+					<div id="tab1-0" class="active">
+						<p>{{ product.description|safe }}</p>
+					</div>
+					<div id="tab2-0">
+
+						<div class="row mb-10">
+							<div class="col-12">
+								<!-- commentFormArea -->
+								<div class="commentFormArea">
+									<h2 class="headingVII text-uppercase mb-5">LeaVe A Comment</h2>
+									<form class="commentform" action="{% url 'add_review' product.id %}" method="POST" id="formReview">
+										{% csrf_token %}
+										<input type="hidden" name="parent" value="" id="comment_parent">
+										<div class="d-flex flex-wrap row1 mb-md-5">
+											<div class="form-group coll mb-5">
+												<label for="name" class="mb-1">Name *</label>
+												<input type="text" id="name" class="form-control" name="name">
+											</div>
+											<div class="form-group coll mb-5">
+												<label for="email" class="mb-1">Email *</label>
+												<input type="email" class="form-control" id="email" name="email">
+											</div>
+										</div>
+
+										<div class="form-group w-80 mb-5">
+											<textarea name="text" id="comment_text" class="form-control" placeholder="Comment"></textarea>
+										</div>
+
+										<button type="submit" class="btn btnTheme btnShop md-round fwEbold text-white py-3 px-4 py-md-3 px-md-4">Post Now <i class="fas fa-arrow-right ml-2"></i></button>
+									</form>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-12 border-bottom">
+								<!-- commentsBlock -->
+								<div class="commentsBlock overflow-hidden mb-2">
+									<h4 class="headingVII text-uppercase mb-5">{{ product.reviews_set.count }} COMMENTS</h4>
+									<!-- commentArea -->
+
+									{% for review in product.get_review %}
+										<article class="commentArea overflow-hidden d-flex align-items-start mb-6">
+											<a href="javascript:void(0);" class="img rounded pr-5">
+												<img src="{% static 'images/avatar2.png' %}" alt="image description" class="img-fluid">
+											</a>
+											<div class="txtHolder border px-2 py-2">
+												<span class="commentDate d-block mb-2">
+													<a>{{ review.name }}</a> {{ review.created_at|date:"M d, Y h:i a" }}
+													<a href="#formReview" onclick="addReview('{{ review.name }}', '{{ review.id }}')" class="link text-green" >Reply</a>
+												</span>
+												<p class="mb-1">{{ review.text }}</p>
+											</div>
+										</article>
+										{% for rev in review.reviews_set.all %}
+											<!-- comment one level of the page -->
+											<div class="commentOneLevel pl-md-20 pl-sm-10 pl-0 mb-9">
+												<article class="commentArea overflow-hidden d-flex align-items-start mb-2">
+													<a href="javascript:void(0);" class="img rounded pr-5"><img src="{% static 'images/avatar2.png' %}" alt="image description" class="img-fluid"></a>
+													<div class="txtHolder border px-2 py-2">
+														<span class="commentDate d-block mb-2">
+															<a href="javascript:void(0);">{{ rev.name }}</a> {{ rev.created_at|date:"M d, Y h:i a" }}
+<!--															<a href="javascript:void(0);" class="link text-green">Reply</a></span>-->
+														<p class="mb-1">{{ rev.text }}</p>
+													</div>
+												</article>
+											</div>
+										{% endfor %}
+									{% endfor %}
+
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- featureSec -->
+	<section class="featureSec container overflow-hidden pt-xl-12 pt-lg-10 pb-lg-14 pt-md-8 pb-md-10 py-5">
+		<div class="row">
+			<!-- mainHeader -->
+			<header class="col-12 mainHeader mb-5 text-center">
+				<h1 class="headingIV playfair fwEblod mb-4">Related products</h1>
+			</header>
+		</div>
+		<div class="row">
+			<!-- featureCol -->
+			<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-7">
+				<div class="border">
+					<div class="imgHolder position-relative w-100 overflow-hidden">
+						<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+						<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
+							<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
+						</ul>
+					</div>
+					<div class="text-center py-5 px-4">
+						<span class="title d-block mb-2"><a href="shop-detail.html">Pellentesque aliquet</a></span>
+						<span class="price d-block fwEbold"><del>80.50 $</del> 68.00 $</span>
+						<span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block">Sale</span>
+					</div>
+				</div>
+			</div>
+			<!-- featureCol -->
+			<div class="col-12 col-sm-6 col-lg-3 featureCol mb-7">
+				<div class="border">
+					<div class="imgHolder position-relative w-100 overflow-hidden">
+						<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+						<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
+							<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
+						</ul>
+					</div>
+					<div class="text-center py-5 px-4">
+						<span class="title d-block mb-2"><a href="shop-detail.html">Pellentesque aliquet</a></span>
+						<span class="price d-block fwEbold">58.00 $</span>
+					</div>
+				</div>
+			</div>
+			<!-- featureCol -->
+			<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-7">
+				<div class="border">
+					<div class="imgHolder position-relative w-100 overflow-hidden">
+						<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+						<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
+							<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
+						</ul>
+					</div>
+					<div class="text-center py-5 px-4">
+						<span class="title d-block mb-2"><a href="shop-detail.html">Pellentesque aliquet</a></span>
+						<span class="price d-block fwEbold">60.00 $</span>
+						<span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">Hot</span>
+					</div>
+				</div>
+			</div>
+			<!-- featureCol -->
+			<div class="col-12 col-sm-6 col-lg-3 position-relative featureCol mb-7">
+				<div class="border">
+					<div class="imgHolder position-relative w-100 overflow-hidden">
+						<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+						<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
+							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
+							<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
+						</ul>
+					</div>
+					<div class="text-center py-5 px-4">
+						<span class="title d-block mb-2"><a href="shop-detail.html">Pellentesque aliquet</a></span>
+						<span class="price d-block fwEbold"><del>80.50 $</del>65.00 $</span>
+						<span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block">Sale</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock content %}
+
+{% block extra-js %}
+	<script src="{% static 'js/my_script.js' %}"></script>
+{% endblock extra-js %}

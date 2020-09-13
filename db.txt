@@ -15,7 +15,7 @@ Action
 Brand
     name
 
-Tags
+Tag
     name
 
 
@@ -54,6 +54,6 @@ Rating
     product - FK
 
 
-SocialNetworks
+SocialNetwork
     name
     url
