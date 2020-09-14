@@ -6,7 +6,7 @@
 {% endblock header %}
 
 {% block content %}
-	<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url(http://placehold.it/1920x300);">
+	<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({% static 'images/b-bg7.jpg' %});">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
@@ -40,14 +40,21 @@
 				<!-- productTextHolder -->
 				<div class="productTextHolder overflow-hidden">
 					<h2 class="fwEbold mb-2">{{ product.name }}</h2>
-					<ul class="list-unstyled ratingList d-flex flex-nowrap mb-2">
-						<li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
-						<li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
-						<li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
-						<li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
-						<li class="mr-2"><a href="javascript:void(0);"><i class="far fa-star"></i></a></li>
-						<li>( {{ product.reviews_set.count }} customer reviews )</li>
-					</ul>
+
+
+						<form action="{% url 'add_rating' %}" method="post" name="rating">
+							{% csrf_token %}
+							<input type="hidden" value="{{ request.path }}" name="next">
+							<input type="hidden" value="{{ product.id }}" name="product">
+							<span class="rating">
+								{% for k, v in star_form.fields.star.choices %}
+									<input id="rating{{v}}" type="radio" name="star" value="{{k}}">
+									<label for="rating{{v}}"></i>{{k}}</label>
+								{% endfor %}
+							</span>
+						</form>
+
+
 					<strong class="price d-block mb-5 text-green">{{ product.price|floatformat:2 }} $</strong>
 
 					<ul class="list-unstyled productInfoDetail mb-5 overflow-hidden">

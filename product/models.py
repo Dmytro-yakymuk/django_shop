@@ -123,6 +123,7 @@ class RatingStar(models.Model):
     class Meta:
         verbose_name = "Рейтингава зірка"
         verbose_name_plural = "Рейтингові зірки"
+        ordering = ["-value"]
 
 class Rating(models.Model):
     ip = models.CharField("IP адреса", max_length=20)

@@ -139,7 +139,7 @@ class RatingStarAdmin(admin.ModelAdmin):
 
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
-    list_display = ("id", "product", "star")
+    list_display = ("id", "product", "ip", "star")
     list_display_links = ("id",)
 
 

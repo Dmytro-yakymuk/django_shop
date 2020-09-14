@@ -11,7 +11,7 @@ function ajaxSend(url, params) {
         .catch(error => console.error(error))
 }
 
- const forms = document.querySelector('form[name=filter]');
+const forms = document.querySelector('form[name=filter]');
 
  forms.addEventListener('submit', function (e) {
      // Получаем данные из формы
@@ -53,7 +53,6 @@ let html = '\
         </div>\
     </div>\
 {{/products}}'
-
 
 
 
