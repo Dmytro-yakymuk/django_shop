@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
     <header id="header" class="pt-lg-5 pt-md-3 pt-2 position-absolute w-100">
         <div class="container-fluid px-xl-17 px-lg-5 px-md-3 px-0 d-flex flex-wrap">
 
@@ -16,6 +16,20 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle text-uppercase" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">ENG</a>
                         <div class="dropdown-menu pl-4 pr-4">
+                            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                <input name="next" type="hidden" value="{{ redirect_to }}">
+                                <select name="language">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                            {{ language.name_local }} ({{ language.code }})
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <input type="submit" value="Go">
+                            </form>
                             <a class="dropdown-item" href="javascript:void(0);">English</a>
                             <a class="dropdown-item" href="javascript:void(0);">Vietnamese</a>
                             <a class="dropdown-item" href="javascript:void(0);">French</a>
@@ -46,13 +60,13 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav mx-auto text-uppercase d-inline-block">
                                 <li class="nav-item active dropdown">
-                                    <a class="dropdown-toggle d-block" href="{% url 'home' %}">home</a>
+                                    <a class="dropdown-toggle d-block" href="{% url 'home' %}">{% trans home %}</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="dropdown-toggle d-block" href="{% url 'product_list' %}" >Store</a>
+                                    <a class="dropdown-toggle d-block" href="{% url 'product_list' %}" >{% trans Store %}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="d-block" href="about-us/">About</a>
+                                    <a class="d-block" href="/about/">{% trans About %}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nLogo" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="Botanical" class="img-fluid"></a>

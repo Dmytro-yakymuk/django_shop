@@ -27,6 +27,7 @@ class ImagesGetRoot():
 class ProductListView(CategoryGetAll, ListView):
     model = Product
     queryset = Product.objects.all()
+    paginate_by = 3
 
     # 1 спосіб виввести всі категорії
     def get_context_data(self, *args, **kwargs):
@@ -37,9 +38,15 @@ class ProductListView(CategoryGetAll, ListView):
 
 
 class ProductFilterView(CategoryGetAll, ListView):
+    paginate_by = 2
     def get_queryset(self):
-        queryset = Product.objects.filter(category__in=self.request.GET.getlist("category"))
+        queryset = Product.objects.filter(category__in=self.request.GET.getlist("category")).distinct()
         return queryset
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["category"] = ''.join([f"category={x}&" for x in self.request.GET.getlist("category")])
+        return context
 
 
 class JsonProductFilterView(ListView):
@@ -67,6 +74,7 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['star_form'] = RatingForm()
+        context['form'] = ReviewForm()
         return context
 
 
@@ -106,3 +114,17 @@ class AddStarRating(View):
             return HttpResponse(status=201)
         else:
             return HttpResponse(status=400)
+
+
+
+class SearchListView(ListView):
+    """Поиск фильмов"""
+    paginate_by = 3
+
+    def get_queryset(self):
+        return Product.objects.filter(name__icontains=self.request.GET.get("q"))
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["q"] = f'q={self.request.GET.get("q")}&'
+        return context

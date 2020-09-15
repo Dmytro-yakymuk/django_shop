@@ -79,14 +79,7 @@
 								</div>
 							{% endfor %}
 							<div class="col-12 pt-3 mb-lg-0 mb-md-6 mb-3">
-								<!-- pagination -->
-								<ul class="list-unstyled pagination d-flex justify-content-center align-items-end">
-									<li><a href="javascript:void(0);"><i class="fas fa-chevron-left"></i></a></li>
-									<li class="active"><a href="javascript:void(0);">1</a></li>
-									<li><a href="javascript:void(0);">2</a></li>
-									<li>...</li>
-									<li><a href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
-								</ul>
+								{% include 'include/pagination.html' %}
 							</div>
 						</div>
 					</article>
@@ -96,15 +89,15 @@
 					<aside id="sidebar">
 						<!-- widget -->
 						<section class="widget overflow-hidden mb-9">
-							<form action="javascript:void(0);" class="searchForm position-relative border">
+							<form action="{% url 'search' %}" method="get" class="searchForm position-relative border">
 								<fieldset>
-									<input type="search" class="form-control" placeholder="Search product...">
-									<button class="position-absolute"><i class="icon-search"></i></button>
+									<input type="search" name="q" class="form-control" placeholder="Search product...">
+									<button type="submit" class="position-absolute"><i class="icon-search"></i></button>
 								</fieldset>
 							</form>
 						</section>
 						<!-- widget -->
-						<form action="{% url 'product_filter_json' %}" method="GET" name="filter" class="filter-ranger-form">
+						<form action="{% url 'product_filter' %}" method="GET" name="filter" class="filter-ranger-form">
 							<section class="widget overflow-hidden mb-9">
 								<h3 class="headingVII fwEbold text-uppercase mb-5">PRODUCT CATEGORIES</h3>
 								<ul class="list-unstyled categoryList mb-0">

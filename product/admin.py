@@ -4,16 +4,18 @@ from .models import Category, Color, Size, Action, Brand, Tag, Product, Quantity
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
+from modeltranslation.admin import TranslationAdmin
 
 
 class ProductAdminForm(forms.ModelForm):
-    description = forms.CharField(label="Опис" ,widget=CKEditorUploadingWidget())
+    description_ru = forms.CharField(label="Опис" ,widget=CKEditorUploadingWidget())
+    description_en = forms.CharField(label="Опис" ,widget=CKEditorUploadingWidget())
     class Meta:
         model = Product
         fields = '__all__'
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(TranslationAdmin):
     list_display = ("id", "name", "slug",)
     list_display_links = ("name", )
 
@@ -31,7 +33,7 @@ class SizeAdmin(admin.ModelAdmin):
 
 
 @admin.register(Action)
-class ActionAdmin(admin.ModelAdmin):
+class ActionAdmin(TranslationAdmin):
     list_display = ("id", "name", "color")
     list_display_links = ("name",)
 
@@ -43,7 +45,7 @@ class BrandAdmin(admin.ModelAdmin):
 
 
 @admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
+class TagAdmin(TranslationAdmin):
     list_display = ("id", "name")
     list_display_links = ("name",)
 
@@ -66,7 +68,7 @@ class ImagesInline(admin.StackedInline):
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(TranslationAdmin):
     list_display = ("id", "name", "slug", "public", "created_at",)
     list_display_links = ("name",)
     list_filter = ("created_at", "brand__name",)

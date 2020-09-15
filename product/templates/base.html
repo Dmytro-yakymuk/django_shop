@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static recaptcha3 i18n%}
 <html lang="en">
 <head>
 	<!-- set the encoding of your site -->
@@ -25,6 +25,9 @@
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
 	<link rel="stylesheet" href="{% static 'css/my_style.css' %}">
+
+	{% recaptcha_init %}
+	{% recaptcha_ready action_name='homepage' %}
 </head>
 <body>
     <!-- pageWrapper -->
