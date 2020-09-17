@@ -34,3 +34,13 @@
 .rating > label:hover:before, .rating > label:hover ~ label:before, .rating:not(:hover) > :checked ~ label:before {
     opacity: 1;
 }
+
+
+
+.active_item {
+    color: #5BA515 !important;
+}
+
+.cursor_pointer{
+    cursor: pointer;
+}

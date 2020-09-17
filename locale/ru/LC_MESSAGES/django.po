@@ -1,0 +1,361 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-18 00:59+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
+"100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\product\templates\include\footer.html:6
+msgid "Contact Us"
+msgstr "Связаться с нами"
+
+#: .\product\templates\include\footer.html:8
+msgid "Address"
+msgstr "Адрес"
+
+#: .\product\templates\include\footer.html:9
+msgid "Phone"
+msgstr "Телефон"
+
+#: .\product\templates\include\footer.html:10
+#: .\product\templates\product\product_detail.html:183
+msgid "Email"
+msgstr "Эл. адрес"
+
+#: .\product\templates\include\footer.html:13
+msgid "Follow  us"
+msgstr "Подписывайтесь на нас"
+
+#: .\product\templates\include\footer.html:21
+msgid "Information"
+msgstr "Информация"
+
+#: .\product\templates\include\footer.html:23
+msgid "New Products"
+msgstr "Новые продукты"
+
+#: .\product\templates\include\footer.html:24
+msgid "Top Sellers"
+msgstr "Лучшие продавцы"
+
+#: .\product\templates\include\footer.html:25
+msgid "Our Blog"
+msgstr "Наш блог"
+
+#: .\product\templates\include\footer.html:26
+msgid "About Our Shop"
+msgstr "О нашем магазине"
+
+#: .\product\templates\include\footer.html:27
+msgid "Privacy policy"
+msgstr "Политика конфиденциальности"
+
+#: .\product\templates\include\footer.html:31
+msgid "My Account"
+msgstr "Мой аккаунт"
+
+#: .\product\templates\include\footer.html:33
+msgid "My account"
+msgstr "Мой аккаунт"
+
+#: .\product\templates\include\footer.html:34
+msgid "Discount"
+msgstr "Скидка"
+
+#: .\product\templates\include\footer.html:35
+msgid "Orders history"
+msgstr "История заказов"
+
+#: .\product\templates\include\footer.html:36
+msgid "Personal information"
+msgstr "Персональные данные"
+
+#: .\product\templates\include\footer.html:40
+msgid "Popular Tag"
+msgstr "Популярный тег"
+
+#: .\product\templates\include\footer.html:54
+msgid "Coppyright 2019 by"
+msgstr ""
+
+#: .\product\templates\include\footer.html:54
+msgid "Botanical Store"
+msgstr "Ботанический магазин"
+
+#: .\product\templates\include\footer.html:54
+msgid "All right reserved"
+msgstr "Все права защищены"
+
+#: .\product\templates\include\header.html:8
+msgid "Hotline"
+msgstr "Горячая линия"
+
+#: .\product\templates\include\header.html:11
+msgid "Wellcome To Botanical Store"
+msgstr "Добро пожаловать в ботанический магазин"
+
+#: .\product\templates\include\header.html:17
+msgid "Currency"
+msgstr "Валюта"
+
+#: .\product\templates\include\header.html:26
+msgid "Languages"
+msgstr "Языки"
+
+#: .\product\templates\include\header.html:72
+#: .\product\templates\include\home_header.html:59
+msgid "Home"
+msgstr "Главная"
+
+#: .\product\templates\include\header.html:75
+#: .\product\templates\include\home_header.html:62
+msgid "Store"
+msgstr "Магазин"
+
+#: .\product\templates\include\header.html:78
+#: .\product\templates\include\home_header.html:65
+msgid "About"
+msgstr "О нас"
+
+#: .\product\templates\include\header.html:81
+#: .\product\templates\include\home_header.html:71
+msgid "Blog"
+msgstr "Блог"
+
+#: .\product\templates\include\header.html:84
+#: .\product\templates\include\home_header.html:74
+msgid "Pages"
+msgstr "Страницы"
+
+#: .\product\templates\include\header.html:87
+#: .\product\templates\include\home_header.html:77
+msgid "Сontact"
+msgstr "Контакты"
+
+#: .\product\templates\include\home_header.html:11
+msgid "Login"
+msgstr "Авторизоваться"
+
+#: .\product\templates\include\home_header.html:12
+msgid "Registration"
+msgstr "Регистрация"
+
+#: .\product\templates\include\home_header.html:13
+msgid "Logout"
+msgstr "Выйти"
+
+#: .\product\templates\product\home.html:22
+msgid "Houseplant"
+msgstr "Домашнее растение"
+
+#: .\product\templates\product\home.html:22
+msgid "The Perfect Choice"
+msgstr "Идеальный выбор"
+
+#: .\product\templates\product\home.html:23
+#: .\product\templates\product\home.html:80
+msgid ""
+"Lorem ipsum is simply dummy text of the printing and typesetting industry"
+msgstr "Lorem ipsum - это просто фиктивный текст полиграфической и наборной индустрии."
+
+#: .\product\templates\product\home.html:23
+msgid "has been the industry"
+msgstr "была отрасль"
+
+#: .\product\templates\product\home.html:24
+msgid "Shop Now"
+msgstr "В магазин"
+
+#: .\product\templates\product\home.html:44
+msgid "Why choose us"
+msgstr "Почему выбрали нас"
+
+#: .\product\templates\product\home.html:45
+msgid ""
+"Lorem ipsum is simply dummy text of the printing and typesetting industry, "
+"lorem ipsum has been the industry"
+msgstr "Lorem ipsum - это просто фиктивный текст в полиграфической и наборной индустрии, lorem ipsum был стандартным фиктивным текстом в отрасли с 1500-х годов, когда неизвестный принтер захватил камбуз"
+
+#: .\product\templates\product\home.html:45
+msgid "Learn More"
+msgstr "Узнать больше"
+
+#: .\product\templates\product\home.html:51
+msgid "Hand Planted"
+msgstr "Посаженный вручную"
+
+#: .\product\templates\product\home.html:52
+msgid ""
+"There are many variations of passages of lorem ipsum available, but the "
+"majority have suffered alteration in some form"
+msgstr "Существует множество вариантов отрывков lorem ipsum, но большинство из них претерпели изменения в той или иной форме"
+
+#: .\product\templates\product\home.html:58
+msgid "Natural Sunlight"
+msgstr "Естественный солнечный свет"
+
+#: .\product\templates\product\home.html:59
+msgid ""
+"It is a long established fact that a reader will be distracted by the reable "
+"content of a page"
+msgstr "Это давно установленный факт, что читатель будет отвлекаться на реалистичное содержание страницы."
+
+#: .\product\templates\product\home.html:65
+msgid "Clean Air"
+msgstr "Чистый воздух"
+
+#: .\product\templates\product\home.html:66
+msgid ""
+"There are many variations of passages of lorem ipsum available, but the "
+"majority have suffered"
+msgstr "Существует множество вариантов отрывков lorem ipsum, но большинство из них пострадали."
+
+#: .\product\templates\product\home.html:78
+msgid "Featured Product"
+msgstr "Рекомендуемый продукт"
+
+#: .\product\templates\product\home.html:140
+msgid "Free shipping order"
+msgstr "Бесплатная доставка заказа"
+
+#: .\product\templates\product\home.html:141
+msgid "On orders over"
+msgstr "По заказам более"
+
+#: .\product\templates\product\home.html:150
+msgid "Special gift card"
+msgstr "Специальная подарочная карта"
+
+#: .\product\templates\product\home.html:151
+msgid "The perfect gift idea"
+msgstr "Идеальная идея для подарка"
+
+#: .\product\templates\product\home.html:160
+msgid "Return &amp; exchange"
+msgstr "Возврат &amp; обмена"
+
+#: .\product\templates\product\home.html:161
+msgid "Free return within 3 days"
+msgstr "Бесплатный возврат в течении 3-х дней"
+
+#: .\product\templates\product\home.html:170
+msgid "Support"
+msgstr "Служба поддержки"
+
+#: .\product\templates\product\home.html:171
+msgid "Customer support"
+msgstr "Служба поддержки клиентов"
+
+#: .\product\templates\product\home.html:182
+msgid "Daily Deal"
+msgstr "Сделка дня"
+
+#: .\product\templates\product\home.html:184
+msgid "There are many variations of passages of lorem ipsum available"
+msgstr "Есть много вариантов отрывков lorem ipsum."
+
+#: .\product\templates\product\product_detail.html:61
+msgid "Product Code"
+msgstr "Код продукта"
+
+#: .\product\templates\product\product_detail.html:62
+msgid "Quantity"
+msgstr "Количество"
+
+#: .\product\templates\product\product_detail.html:63
+msgid "Shipping tax"
+msgstr "Налог на доставку"
+
+#: .\product\templates\product\product_detail.html:66
+msgid "Size"
+msgstr "Размер"
+
+#: .\product\templates\product\product_detail.html:104
+msgid "Color"
+msgstr "Цвет"
+
+#: .\product\templates\product\product_detail.html:114
+msgid "SHARE THIS PRODUCT"
+msgstr "ПОДЕЛИТЬСЯ ПРОДУКТОМ"
+
+#: .\product\templates\product\product_detail.html:121
+msgid "Categories"
+msgstr "Категории"
+
+#: .\product\templates\product\product_detail.html:127
+msgid "Tags"
+msgstr "Теги"
+
+#: .\product\templates\product\product_detail.html:128
+msgid "Brand"
+msgstr "Марка"
+
+#: .\product\templates\product\product_detail.html:156
+msgid "Description"
+msgstr "Описание"
+
+#: .\product\templates\product\product_detail.html:159
+msgid "Reviews"
+msgstr "Отзывы"
+
+#: .\product\templates\product\product_detail.html:173
+msgid "LeaVe A Comment"
+msgstr "Оставить комментарий"
+
+#: .\product\templates\product\product_detail.html:179
+msgid "Name"
+msgstr "Название"
+
+#: .\product\templates\product\product_detail.html:192
+msgid "Post Now"
+msgstr "Опубликовать"
+
+#: .\product\templates\product\product_detail.html:202
+msgid "COMMENTS"
+msgstr "КОММЕНТАРИИ"
+
+#: .\product\templates\product\product_detail.html:213
+msgid "Reply"
+msgstr "Ответить"
+
+#: .\product\templates\product\product_detail.html:249
+msgid "Related products"
+msgstr "Сопутствующие товары"
+
+#: .\product\templates\product\product_list.html:43
+msgid "Default sorting"
+msgstr "Сортировка по умолчанию"
+
+#: .\product\templates\product\product_list.html:102
+msgid "PRODUCT CATEGORIES"
+msgstr "КАТЕГОРИИ ПРОДУКТА"
+
+#: .\product\templates\product\product_list.html:116
+msgid "Filter by price"
+msgstr "Фильтровать по цене"
+
+#: .\product\templates\product\product_list.html:122
+msgid "Filter"
+msgstr "Фильтр"
+
+#: .\product\templates\product\product_list.html:130
+msgid "top rate"
+msgstr "Топ"
+
+#: .\product\templates\product\product_list.html:135
+msgid "product tags"
+msgstr "Теги продукта"

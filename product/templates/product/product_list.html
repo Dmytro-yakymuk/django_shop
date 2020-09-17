@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% load product_tag %}
-{% load static %}
+{% load static i18n%}
 
 {% block header %}
 	{% include 'include/header.html ' %}
@@ -40,7 +40,7 @@
 								<div class="d-flex flex-nowrap align-items-center">
 									<strong class="groupTitle mr-2">Sort by:</strong>
 									<div class="dropdown">
-										<button class="dropdown-toggle buttonReset" type="button" id="sortGroup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Default sorting</button>
+										<button class="dropdown-toggle buttonReset" type="button" id="sortGroup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans 'Default sorting' %}</button>
 										<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="sortGroup">
 											<li><a href="javascript:void(0);">Default Order</a></li>
 											<li><a href="javascript:void(0);">Default Order</a></li>
@@ -99,7 +99,7 @@
 						<!-- widget -->
 						<form action="{% url 'product_filter' %}" method="GET" name="filter" class="filter-ranger-form">
 							<section class="widget overflow-hidden mb-9">
-								<h3 class="headingVII fwEbold text-uppercase mb-5">PRODUCT CATEGORIES</h3>
+								<h3 class="headingVII fwEbold text-uppercase mb-5">{% trans 'PRODUCT CATEGORIES' %}</h3>
 								<ul class="list-unstyled categoryList mb-0">
 	<!--								{% get_categories as categories %}-->
 									{% for category in view.get_categories %}
@@ -113,13 +113,13 @@
 
 							<!-- widget -->
 							<section class="widget mb-9">
-								<h3 class="headingVII fwEbold text-uppercase mb-6">Filter by price</h3>
+								<h3 class="headingVII fwEbold text-uppercase mb-6">{% trans 'Filter by price' %}</h3>
 								<!-- filter ranger form -->
 									<div id="slider-range"></div>
 									<input type="hidden" id="amount1" name="price1">
 									<input type="hidden" id="amount2" name="price2">
 									<div class="get-results-wrap d-flex align-items-center justify-content-between">
-										<button type="submit" class="btn btnTheme btn-shop fwEbold md-round px-3 pt-1 pb-2 text-uppercase">Filter</button>
+										<button type="submit" class="btn btnTheme btn-shop fwEbold md-round px-3 pt-1 pb-2 text-uppercase">{% trans 'Filter' %}</button>
 										<p id="amount" class="mb-0"></p>
 									</div>
 							</section>
@@ -127,12 +127,12 @@
 						</form>
 						<!-- widget -->
 						<section class="widget mb-9">
-							<h3 class="headingVII fwEbold text-uppercase mb-6">top rate</h3>
+							<h3 class="headingVII fwEbold text-uppercase mb-6">{% trans 'top rate' %}</h3>
 							{% get_top_product count=2 %}
 						</section>
 						<!-- widget -->
 						<section class="widget mb-9">
-							<h3 class="headingVII fwEbold text-uppercase mb-5">product tags</h3>
+							<h3 class="headingVII fwEbold text-uppercase mb-5">{% trans 'product tags' %}</h3>
 							<ul class="list-unstyled tagNavList d-flex flex-wrap mb-0">
 								<li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Plant</a></li>
 								<li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Floor</a></li>

@@ -3,11 +3,11 @@ from .models import Category, Product, Action, Tag
 
 @register(Category)
 class CategoryTranslationOptions(TranslationOptions):
-    fields = ('name',)
+    fields = ('name', 'slug')
 
 @register(Product)
 class ProductTranslationOptions(TranslationOptions):
-    fields = ('name', 'description')
+    fields = ('name', 'slug', 'description')
 
 @register(Action)
 class ActionTranslationOptions(TranslationOptions):

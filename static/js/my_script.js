@@ -1,8 +1,20 @@
+// функція для переключання мов
+$(document).ready(function(){
+    $(".dropdown-item").click(function(){
+        language_code = $(this).attr('value');
+        $("#language").val(language_code);
+        $('form[name=language_form]').submit();
+    });
+});
+
+
 // функція для перенаправлення для написання коментів користувачу
 function addReview(name, id) {
     document.getElementById("comment_parent").value = id;
     document.getElementById("comment_text").innerText = `${name}, `
 }
+
+
 
 // Add star rating
 const rating = document.querySelector('form[name=rating]');

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n%}
 
 {% block header %}
 	{% include 'include/home_header.html ' %}
@@ -19,9 +19,9 @@
 						<div class="row">
 							<div class="col-12 col-xl-7">
 								<div class="txtwrap pr-lg-10">
-									<h1 class="fwEbold position-relative pb-lg-8 pb-4 mb-xl-7 mb-lg-6">Houseplant <span class="text-break d-block">The Perfect Choice.</span></h1>
-									<p class="mb-xl-15 mb-lg-10">Lorem ipsum is simply dummy text of the printing and typesetting industry <br>has been the industry's standard.</p>
-									<a href="shop.html" class="btn btnTheme btnShop fwEbold text-white md-round py-md-3 px-md-4 py-2 px-3">Shop Now <i class="fas fa-arrow-right ml-2"></i></a>
+									<h1 class="fwEbold position-relative pb-lg-8 pb-4 mb-xl-7 mb-lg-6">{% trans 'Houseplant' %} <span class="text-break d-block">{% trans 'The Perfect Choice' %}.</span></h1>
+									<p class="mb-xl-15 mb-lg-10">{% trans 'Lorem ipsum is simply dummy text of the printing and typesetting industry' %} <br>{% trans "has been the industry's standard" %}.</p>
+									<a href="shop.html" class="btn btnTheme btnShop fwEbold text-white md-round py-md-3 px-md-4 py-2 px-3">{% trans 'Shop Now' %} <i class="fas fa-arrow-right ml-2"></i></a>
 								</div>
 							</div>
 							<div class="imgHolder">
@@ -31,11 +31,6 @@
 					</div>
 				</div>
 			</div>
-
-		</div>
-		<div class="slickNavigatorsWrap">
-			<a href="#" class="slick-prev"><i class="icon-leftarrow"></i></a>
-			<a href="#" class="slick-next"><i class="icon-rightarrow"></i></a>
 		</div>
 	</section>
 
@@ -46,29 +41,29 @@
 				<img src="{% static 'images/img01.jpg' %}" alt="image description" class="img-fluid">
 			</div>
 			<div class="col-12 col-lg-6 pr-4">
-				<h2 class="headingII fwEbold playfair position-relative mb-6 pb-5">Why choose us ?</h2>
-				<p class="mb-xl-14 mb-lg-10">Lorem ipsum is simply dummy text of the printing and typesetting industry, lorem ipsum has been the industry's standard dummy text ever since the 1500s  when an unknown printer took a galley ... <a href="javascript:void(0);" class="btnMore"><i>Learn More</i></a></p>
+				<h2 class="headingII fwEbold playfair position-relative mb-6 pb-5">{% trans 'Why choose us' %} ?</h2>
+				<p class="mb-xl-14 mb-lg-10">{% trans "Lorem ipsum is simply dummy text of the printing and typesetting industry, lorem ipsum has been the industry's standard dummy text ever since the 1500s  when an unknown printer took a galley" %} ... <a href="javascript:void(0);" class="btnMore"><i>{% trans 'Learn More' %}</i></a></p>
 				<!-- chooseList -->
 				<ul class="list-unstyled chooseList">
 					<li class="d-flex justify-content-start mb-xl-7 mb-lg-5 mb-3">
 						<span class="icon icon-plant"></span>
 						<div class="alignLeft d-flex justify-content-start flex-wrap">
-							<h3 class="headingIII fwEbold mb-2">Hand Planted</h3>
-							<p>There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form.</p>
+							<h3 class="headingIII fwEbold mb-2">{% trans 'Hand Planted' %}</h3>
+							<p>{% trans 'There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form' %}.</p>
 						</div>
 					</li>
 					<li class="d-flex justify-content-start mb-xl-6 mb-lg-5 mb-4">
 						<span class="icon icon-ic-plant"></span>
 						<div class="alignLeft d-flex justify-content-start flex-wrap">
-							<h3 class="headingIII fwEbold mb-2">Natural Sunlight</h3>
-							<p>It is a long established fact that a reader will be distracted by the reable content of a page.</p>
+							<h3 class="headingIII fwEbold mb-2">{% trans 'Natural Sunlight' %}</h3>
+							<p>{% trans 'It is a long established fact that a reader will be distracted by the reable content of a page' %}.</p>
 						</div>
 					</li>
 					<li class="d-flex justify-content-start">
 						<span class="icon icon-desert"></span>
 						<div class="alignLeft d-flex justify-content-start flex-wrap">
-							<h3 class="headingIII fwEbold mb-2">Clean Air</h3>
-							<p>There are many variations of passages of lorem ipsum available, but the majority have suffered.</p>
+							<h3 class="headingIII fwEbold mb-2">{% trans 'Clean Air' %}</h3>
+							<p>{% trans 'There are many variations of passages of lorem ipsum available, but the majority have suffered' %}.</p>
 						</div>
 					</li>
 				</ul>
@@ -80,9 +75,9 @@
 	<section class="featureSec container-fluid overflow-hidden pt-xl-12 pt-lg-10 pt-md-80 pt-5 pb-xl-10 pb-lg-4 pb-md-2 px-xl-14 px-lg-7">
 		<!-- mainHeader -->
 		<header class="col-12 mainHeader mb-7 text-center">
-			<h1 class="headingIV playfair fwEblod mb-4">Featured Product</h1>
+			<h1 class="headingIV playfair fwEblod mb-4">{% trans 'Featured Product' %}</h1>
 			<span class="headerBorder d-block mb-md-5 mb-3"><img src="{% static 'images/hbdr.png' %}" alt="Header Border" class="img-fluid img-bdr"></span>
-			<p>Lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
+			<p>{% trans 'Lorem ipsum is simply dummy text of the printing and typesetting industry' %}.</p>
 		</header>
 		<div class="col-12 p-0 overflow-hidden d-flex flex-wrap">
 			{% for product in products %}
@@ -142,8 +137,8 @@
 				<div class="contactListColumn border overflow-hidden py-xl-5 py-md-3 py-2 px-xl-6 px-md-3 px-3 d-flex">
 					<span class="icon icon-van"></span>
 					<div class="alignLeft pl-2">
-						<strong class="headingV fwEbold d-block mb-1">Free shipping order</strong>
-						<p class="m-0">On orders over  $100</p>
+						<strong class="headingV fwEbold d-block mb-1">{% trans 'Free shipping order' %}</strong>
+						<p class="m-0">{% trans 'On orders over' %}  $100</p>
 					</div>
 				</div>
 			</div>
@@ -152,8 +147,8 @@
 				<div class="contactListColumn border overflow-hidden py-xl-5 py-md-3 py-2 px-xl-6 px-md-3 px-3 d-flex">
 					<span class="icon icon-gift"></span>
 					<div class="alignLeft pl-2">
-						<strong class="headingV fwEbold d-block mb-1">Special gift card</strong>
-						<p class="m-0">The perfect gift idea</p>
+						<strong class="headingV fwEbold d-block mb-1">{% trans 'Special gift card' %}</strong>
+						<p class="m-0">{% trans 'The perfect gift idea' %}</p>
 					</div>
 				</div>
 			</div>
@@ -162,8 +157,8 @@
 				<div class="contactListColumn border overflow-hidden py-xl-5 py-md-3 py-2 px-xl-4 px-md-2 px-3 d-flex">
 					<span class="icon icon-recycle"></span>
 					<div class="alignLeft pl-2">
-						<strong class="headingV fwEbold d-block mb-1">Return &amp; exchange</strong>
-						<p class="m-0">Free return within 3 days</p>
+						<strong class="headingV fwEbold d-block mb-1">{% trans 'Return &amp; exchange' %}</strong>
+						<p class="m-0">{% trans 'Free return within 3 days' %}</p>
 					</div>
 				</div>
 			</div>
@@ -172,8 +167,8 @@
 				<div class="contactListColumn border overflow-hidden py-xl-5 py-md-3 py-2 px-xl-6 px-md-3 px-3 d-flex">
 					<span class="icon icon-call"></span>
 					<div class="alignLeft pl-2">
-						<strong class="headingV fwEbold d-block mb-1">Support 24 / 7</strong>
-						<p class="m-0">Customer support</p>
+						<strong class="headingV fwEbold d-block mb-1">{% trans 'Support' %} 24 / 7</strong>
+						<p class="m-0">{% trans 'Customer support' %}</p>
 					</div>
 				</div>
 			</div>
@@ -184,9 +179,9 @@
 	<section class="dealSecHolder container-fluid overflow-hidden py-xl-12 py-lg-10 py-md-8 py-5">
 		<!-- mainHeader -->
 		<header class="col-12 mainHeader mb-7 text-center">
-			<h1 class="headingIV playfair fwEblod mb-5">Daily Deal</h1>
+			<h1 class="headingIV playfair fwEblod mb-5">{% trans 'Daily Deal' %}</h1>
 			<span class="headerBorder d-block mb-md-5 mb-3"><img src="{% static 'images/hbdr.png' %}" alt="Header Border" class="img-fluid img-bdr"></span>
-			<p class="mb-6">There are many variations of passages of lorem ipsum available.</p>
+			<p class="mb-6">{% trans 'There are many variations of passages of lorem ipsum available' %}.</p>
 			<div id="defaultCountdown" class="comming-timer"></div>
 		</header>
 		<!-- dealSlider -->
@@ -348,4 +343,3 @@
 
 
 {% endblock content %}
-

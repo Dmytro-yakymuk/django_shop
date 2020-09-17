@@ -8,8 +8,8 @@ from modeltranslation.admin import TranslationAdmin
 
 
 class ProductAdminForm(forms.ModelForm):
-    description_ru = forms.CharField(label="Опис" ,widget=CKEditorUploadingWidget())
-    description_en = forms.CharField(label="Опис" ,widget=CKEditorUploadingWidget())
+    description_ru = forms.CharField(label="Опис", widget=CKEditorUploadingWidget())
+    description_en = forms.CharField(label="Опис", widget=CKEditorUploadingWidget())
     class Meta:
         model = Product
         fields = '__all__'

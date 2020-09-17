@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n%}
 
 {% block header %}
 	{% include 'include/header.html ' %}
@@ -58,12 +58,12 @@
 					<strong class="price d-block mb-5 text-green">{{ product.price|floatformat:2 }} $</strong>
 
 					<ul class="list-unstyled productInfoDetail mb-5 overflow-hidden">
-						<li class="mb-2">Product Code: <span>{{ product.product_code }} </span></li>
-						<li class="mb-2">Quantity: <span>68 Items</span></li>
-						<li class="mb-2">Shipping tax: <span>{{product.shipping_tax}}</span></li>
+						<li class="mb-2">{% trans 'Product Code' %}: <span>{{ product.product_code }} </span></li>
+						<li class="mb-2">{% trans 'Quantity' %}: <span>68 Items</span></li>
+						<li class="mb-2">{% trans 'Shipping tax' %}: <span>{{product.shipping_tax}}</span></li>
 					</ul>
 					<ul class="list-unstyled sizeList d-flex flex-wrap mb-4">
-						<li class="text-uppercase mr-6">Size:</li>
+						<li class="text-uppercase mr-6">{% trans 'Size' %}:</li>
 						<li class="mr-2">
 							<label for="check-1">
 								<input id="check-1" checked="checked" type="checkbox">
@@ -101,7 +101,7 @@
 						</li>
 					</ul>
 					<ul class="list-unstyled colorList d-flex flex-wrap mb-8">
-						<li class="text-uppercase mr-2">Color:</li>
+						<li class="text-uppercase mr-2">{% trans 'Color' %}:</li>
 						<li class="mr-3"><a href="javascript:void(0);" class="red rounded"></a></li>
 						<li class="mr-3"><a href="javascript:void(0);" class="yellow rounded"></a></li>
 						<li class="mr-3"><a href="javascript:void(0);" class="purple rounded"></a></li>
@@ -111,21 +111,21 @@
 						<a href="javascript:void(0);" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4">Add To Cart <i class="fas fa-arrow-right ml-2"></i></a>
 					</div>
 					<ul class="list-unstyled socialNetwork d-flex flex-wrap mb-sm-11 mb-4">
-						<li class="text-uppercase mr-5">SHARE THIS PRODUCT:</li>
+						<li class="text-uppercase mr-5">{% trans 'SHARE THIS PRODUCT' %}:</li>
 						<li class="mr-4"><a href="javascript:void(0);" class="fab fa-facebook-f"></a></li>
 						<li class="mr-4"><a href="javascript:void(0);" class="fab fa-google-plus-g"></a></li>
 						<li class="mr-4"><a href="javascript:void(0);" class="fab fa-twitter"></a></li>
 						<li class="mr-4"><a href="javascript:void(0);" class="fab fa-pinterest-p"></a></li>
 					</ul>
 					<ul class="list-unstyled productInfoDetail mb-0">
-						<li class="mb-2">Categories:
+						<li class="mb-2">{% trans 'Categories' %}:
 							{% for category in product.category.all %}
 								<a href="javascript:void(0);">{{ category.name }},</a>
 							{% endfor %}
 
 						</li>
-						<li class="mb-2">Tags: <a href="javascript:void(0);">organic food,</a> <a href="javascript:void(0);">fruits,</a> <a href="javascript:void(0);">juice</a></li>
-						<li>Brand: <a href="javascript:void(0);">KFC</a></li>
+						<li class="mb-2">{% trans 'Tags' %}: <a href="javascript:void(0);">organic food,</a> <a href="javascript:void(0);">fruits,</a> <a href="javascript:void(0);">juice</a></li>
+						<li>{% trans 'Brand' %}: <a href="javascript:void(0);">KFC</a></li>
 					</ul>
 				</div>
 			</div>
@@ -153,10 +153,10 @@
 				<!-- tabSetList -->
 				<ul class="list-unstyled tabSetList d-flex justify-content-center mb-9">
 					<li class="mr-md-20 mr-sm-10 mr-2">
-						<a href="#tab1-0" class="active playfair fwEbold pb-2">Description</a>
+						<a href="#tab1-0" class="active playfair fwEbold pb-2">{% trans 'Description' %}</a>
 					</li>
 					<li>
-						<a href="#tab2-0" class="playfair fwEbold pb-2">Reviews ( {{ product.reviews_set.count }} )</a>
+						<a href="#tab2-0" class="playfair fwEbold pb-2">{% trans 'Reviews' %} ( {{ product.reviews_set.count }} )</a>
 					</li>
 				</ul>
 				<!-- tab-content -->
@@ -170,17 +170,17 @@
 							<div class="col-12">
 								<!-- commentFormArea -->
 								<div class="commentFormArea">
-									<h2 class="headingVII text-uppercase mb-5">LeaVe A Comment</h2>
+									<h2 class="headingVII text-uppercase mb-5">{% trans 'LeaVe A Comment' %}</h2>
 									<form class="commentform" action="{% url 'add_review' product.id %}" method="POST" id="formReview">
 										{% csrf_token %}
 										<input type="hidden" name="parent" value="" id="comment_parent">
 										<div class="d-flex flex-wrap row1 mb-md-5">
 											<div class="form-group coll mb-5">
-												<label for="name" class="mb-1">Name *</label>
+												<label for="name" class="mb-1">{% trans 'Name' %} *</label>
 												{{ form.name }}
 											</div>
 											<div class="form-group coll mb-5">
-												<label for="email" class="mb-1">Email *</label>
+												<label for="email" class="mb-1">{% trans 'Email' %} *</label>
 												{{ form.email }}
 											</div>
 										</div>
@@ -189,7 +189,7 @@
 											{{ form.text }}
 										</div>
 										{{ form.captcha }}
-										<button type="submit" class="btn btnTheme btnShop md-round fwEbold text-white py-3 px-4 py-md-3 px-md-4">Post Now <i class="fas fa-arrow-right ml-2"></i></button>
+										<button type="submit" class="btn btnTheme btnShop md-round fwEbold text-white py-3 px-4 py-md-3 px-md-4">{% trans 'Post Now' %} <i class="fas fa-arrow-right ml-2"></i></button>
 									</form>
 								</div>
 							</div>
@@ -199,7 +199,7 @@
 							<div class="col-12 border-bottom">
 								<!-- commentsBlock -->
 								<div class="commentsBlock overflow-hidden mb-2">
-									<h4 class="headingVII text-uppercase mb-5">{{ product.reviews_set.count }} COMMENTS</h4>
+									<h4 class="headingVII text-uppercase mb-5">{{ product.reviews_set.count }} {% trans 'COMMENTS' %}</h4>
 									<!-- commentArea -->
 
 									{% for review in product.get_review %}
@@ -210,7 +210,7 @@
 											<div class="txtHolder border px-2 py-2">
 												<span class="commentDate d-block mb-2">
 													<a>{{ review.name }}</a> {{ review.created_at|date:"M d, Y h:i a" }}
-													<a href="#formReview" onclick="addReview('{{ review.name }}', '{{ review.id }}')" class="link text-green" >Reply</a>
+													<a href="#formReview" onclick="addReview('{{ review.name }}', '{{ review.id }}')" class="link text-green" >{% trans 'Reply' %}</a>
 												</span>
 												<p class="mb-1">{{ review.text }}</p>
 											</div>
@@ -246,7 +246,7 @@
 		<div class="row">
 			<!-- mainHeader -->
 			<header class="col-12 mainHeader mb-5 text-center">
-				<h1 class="headingIV playfair fwEblod mb-4">Related products</h1>
+				<h1 class="headingIV playfair fwEblod mb-4">{% trans 'Related products' %}</h1>
 			</header>
 		</div>
 		<div class="row">
@@ -328,7 +328,3 @@
 		</div>
 	</section>
 {% endblock content %}
-
-{% block extra-js %}
-	<script src="{% static 'js/my_script.js' %}"></script>
-{% endblock extra-js %}

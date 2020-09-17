@@ -1,20 +1,20 @@
-{% load static %}
+{% load static i18n%}
     <header id="header" class="position-relative">
         <!-- headerHolderCol -->
         <div class="headerHolderCol pt-lg-4 pb-lg-5 py-3">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-sm-4">
-                        <a href="javascript:void(0);" class="tel d-flex align-items-end"><i class="icon-call mr-2"></i>  Hotline: (602) 462 8889</a>
+                        <a href="javascript:void(0);" class="tel d-flex align-items-end"><i class="icon-call mr-2"></i>  {% trans 'Hotline' %}: (602) 462 8889</a>
                     </div>
                     <div class="col-12 col-sm-4 text-center">
-                        <span class="txt d-block">Wellcome To Botanical Store</span>
+                        <span class="txt d-block">{% trans 'Wellcome To Botanical Store' %}</span>
                     </div>
                     <div class="col-12 col-sm-4">
                         <!-- langListII -->
                         <ul class="nav nav-tabs langListII justify-content-end border-bottom-0">
                             <li class="dropdown">
-                                <span>Currency: </span>
+                                <span>{% trans 'Currency' %}: </span>
                                 <a class="d-inline dropdown-toggle text-uppercase" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">USD</a>
                                 <div class="dropdown-menu text-uppercase pl-4 pr-4 border-0">
                                     <a class="dropdown-item" href="javascript:void(0);">USD</a>
@@ -23,13 +23,24 @@
                                 </div>
                             </li>
                             <li class="dropdown m-0">
-                                <span>Languages: </span>
-                                <a class="d-inline dropdown-toggle text-uppercase" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">EN</a>
+                                <span>{% trans 'Languages' %}: </span>
+                                {% get_current_language as LANGUAGE_CODE %}
+                                <a class="d-inline dropdown-toggle text-uppercase" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">{{ LANGUAGE_CODE }}</a>
                                 <div class="dropdown-menu pl-4 pr-4">
-                                    <a class="dropdown-item" href="javascript:void(0);">English</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Vietnamese</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">French</a>
+                                    <form action="{% url 'set_language' %}" method="post" name="language_form">
+                                        {% csrf_token %}
+                                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                                        <input name="language" type="hidden" value="" id="language">
+
+                                        {% get_available_languages as LANGUAGES %}
+                                        {% get_language_info_list for LANGUAGES as languages %}
+                                        {% for language in languages %}
+                                            <a class="dropdown-item cursor_pointer {% if language.code == LANGUAGE_CODE %}active_item{% endif %}"
+                                               value="{{ language.code }}" >{{ language.name_local }} ({{ language.code }})</a>
+                                        {% endfor %}
+                                    </form>
                                 </div>
+
                             </li>
                         </ul>
                     </div>
@@ -58,29 +69,22 @@
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav mx-auto text-uppercase d-inline-block">
                                     <li class="nav-item dropdown">
-                                        <a class="dropdown-toggle d-block" href="{% url 'home' %}" >home</a>
+                                        <a class="dropdown-toggle d-block" href="{% url 'home' %}" >{% trans 'Home' %}</a>
                                     </li>
                                     <li class="nav-item active dropdown">
-                                        <a class="dropdown-toggle d-block" href="{% url 'product_list' %}">Store</a>
+                                        <a class="dropdown-toggle d-block" href="{% url 'product_list' %}">{% trans 'Store' %}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="d-block" href="/about/">About</a>
+                                        <a class="d-block" href="/about/">{% trans 'About' %}</a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="dropdown-toggle d-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
-                                        <ul class="list-unstyled text-capitalize dropdown-menu mt-0 py-0">
-                                            <li class="d-block mx-0"><a href="blog.html">Blog Left Sidebar</a></li>
-                                            <li class="d-block mx-0"><a href="blog-detail.html">Blog Detail</a></li>
-                                        </ul>
+                                        <a class="dropdown-toggle d-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans 'Blog' %}</a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="dropdown-toggle d-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                        <ul class="list-unstyled text-capitalize dropdown-menu mt-0 py-0">
-                                            <li class="d-block mx-0"><a href="cart-page.html">Cart Page</a></li>
-                                        </ul>
+                                        <a class="dropdown-toggle d-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans 'Pages' %}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="d-block" href="contact-us.html">contact</a>
+                                        <a class="d-block" href="contact-us.html">{% trans 'Сontact' %}</a>
                                     </li>
                                 </ul>
                             </div>
