@@ -5,23 +5,26 @@
 	{% include 'include/header.html ' %}
 {% endblock header %}
 
-{% block content %}
+
+{% block breadcrumbs %}
 	<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({% static 'images/b-bg7.jpg' %});">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
 					<h1 class="headingIV fwEbold playfair mb-4">Shop</h1>
 					<ul class="list-unstyled breadCrumbs d-flex justify-content-center">
-						<li class="mr-2"><a href="home.html">Home</a></li>
+						<li class="mr-2"><a href="{% url 'home' %}">Home</a></li>
 						<li class="mr-2">/</li>
-						<li class="mr-2"><a href="shop.html">Shop</a></li>
+						<li class="mr-2"><a href="{% url 'product_list' %}">Shop</a></li>
 						<li class="mr-2">/</li>
-						<li class="active">Pellentesque aliquet</li>
+						<li class="active">{{ product.name }}</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</section>
+{% endblock breadcrumbs %}
+{% block content %}
 	<!-- twoColumns -->
 	<div class="twoColumns container pt-xl-23 pb-xl-20 pt-lg-20 pb-lg-20 py-md-16 py-10">
 		<div class="row mb-6">
@@ -52,10 +55,20 @@
 									<label for="rating{{v}}"></i>{{k}}</label>
 								{% endfor %}
 							</span>
+
+							<span>General star - {{ product.get_general_rating.star__avg|floatformat:1 }}</span>
 						</form>
 
 
-					<strong class="price d-block mb-5 text-green">{{ product.price|floatformat:2 }} $</strong>
+
+					{% if product.get_price_discount == product.price %}
+						<strong class="price d-block mb-5 text-green">{{ product.price|floatformat:2 }} $</strong>
+					{% else %}
+					<strong class="price d-block mb-5 text-green">
+						<small class="fwEbold"><del>{{ product.price|floatformat:2 }} $</del></small>
+						{{ product.get_price_discount|floatformat:2 }} $
+					</strong>
+					{% endif %}
 
 					<ul class="list-unstyled productInfoDetail mb-5 overflow-hidden">
 						<li class="mb-2">{% trans 'Product Code' %}: <span>{{ product.product_code }} </span></li>
@@ -64,41 +77,18 @@
 					</ul>
 					<ul class="list-unstyled sizeList d-flex flex-wrap mb-4">
 						<li class="text-uppercase mr-6">{% trans 'Size' %}:</li>
-						<li class="mr-2">
-							<label for="check-1">
-								<input id="check-1" checked="checked" type="checkbox">
-								<span class="fake-input"></span>
-								<span class="fake-label">L</span>
-							</label>
-						</li>
-						<li class="mr-2">
-							<label for="check-2">
-								<input id="check-2" type="checkbox">
-								<span class="fake-input"></span>
-								<span class="fake-label">M</span>
-							</label>
-						</li>
-						<li class="mr-2">
-							<label for="check-3">
-								<input id="check-3" type="checkbox">
-								<span class="fake-input"></span>
-								<span class="fake-label">S</span>
-							</label>
-						</li>
-						<li class="mr-2">
-							<label for="check-4">
-								<input id="check-4" type="checkbox">
-								<span class="fake-input"></span>
-								<span class="fake-label">XL</span>
-							</label>
-						</li>
-						<li class="mr-2">
-							<label for="check-5">
-								<input id="check-5" type="checkbox">
-								<span class="fake-input"></span>
-								<span class="fake-label">XXL</span>
-							</label>
-						</li>
+
+						{% for size in sizes %}
+							<li class="mr-2">
+								<label for="check-{{forloop.counter}}">
+									<input id="check-{{forloop.counter}}" type="checkbox"
+										   {% if size.name in product.get_size_names %} {% else %}disabled{% endif %}>
+									<span class="fake-input"></span>
+									<span class="fake-label">{{ size.name }}</span>
+								</label>
+							</li>
+						{% endfor %}
+
 					</ul>
 					<ul class="list-unstyled colorList d-flex flex-wrap mb-8">
 						<li class="text-uppercase mr-2">{% trans 'Color' %}:</li>
@@ -120,7 +110,7 @@
 					<ul class="list-unstyled productInfoDetail mb-0">
 						<li class="mb-2">{% trans 'Categories' %}:
 							{% for category in product.category.all %}
-								<a href="javascript:void(0);">{{ category.name }},</a>
+								<a href="javascript:void(0);">{{ category.name }}{% if forloop.last is not True %},{% endif %}</a>
 							{% endfor %}
 
 						</li>
@@ -328,3 +318,30 @@
 		</div>
 	</section>
 {% endblock content %}
+
+{% block extra-js %}
+	<script>
+
+		// функція для перенаправлення для написання коментів користувачу
+		function addReview(name, id) {
+			document.getElementById("comment_parent").value = id;
+			document.getElementById("comment_text").innerText = `${name}, `
+		}
+
+
+		// Add star rating
+		const rating = document.querySelector('form[name=rating]');
+
+		rating.addEventListener("change", function (e) {
+			// Получаем данные из формы
+			let data = new FormData(this);
+			fetch(`${this.action}`, {
+				method: 'POST',
+				body: data
+			})
+				.then(response => alert("Рейтинг установлен"))
+				.catch(error => alert("Ошибка"))
+		});
+
+	</script>
+{% endblock extra-js %}

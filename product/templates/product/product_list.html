@@ -1,27 +1,30 @@
 {% extends 'base.html' %}
 
-{% load product_tag %}
-{% load static i18n%}
+{% load product_tag static i18n %}
 
 {% block header %}
 	{% include 'include/header.html ' %}
 {% endblock header %}
 
-{% block content %}
-		<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({% static 'images/b-bg7.jpg' %});">
-			<div class="container">
-				<div class="row">
-					<div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
-						<h1 class="headingIV fwEbold playfair mb-4">Shop</h1>
-						<ul class="list-unstyled breadCrumbs d-flex justify-content-center">
-							<li class="mr-2"><a href="home.html">Home</a></li>
-							<li class="mr-2">/</li>
-							<li class="active">Shop</li>
-						</ul>
-					</div>
+
+{% block breadcrumbs %}
+	<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({% static 'images/b-bg7.jpg' %});">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
+					<h1 class="headingIV fwEbold playfair mb-4">Shop</h1>
+					<ul class="list-unstyled breadCrumbs d-flex justify-content-center">
+						<li class="mr-2"><a href="{% url 'home' %}">Home</a></li>
+						<li class="mr-2">/</li>
+						<li class="active">Shop</li>
+					</ul>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
+{% endblock breadcrumbs %}
+
+{% block content %}
 		<!-- twoColumns -->
 		<div class="twoColumns container pt-lg-23 pb-lg-20 pt-md-16 pb-md-4 pt-10 pb-4">
 			<div class="row">
@@ -71,9 +74,17 @@
 										</div>
 										<div class="text-center py-5 px-4">
 											<span class="title d-block mb-2"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></span>
-											<span class="price d-block fwEbold"><del>75.00 $</del>{{ product.price|floatformat:2 }} $</span>
-											<span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">HOT</span>
-											<span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block ml-8">Sale</span>
+											{% for productaction in product.productaction_set.all %}
+												{% if productaction.product.id == product.id %}
+													<span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block ml-{% widthratio forloop.counter0 1 8 %}"
+														  style="background-color: {{ productaction.action.color }};">{{ productaction.action.name }}</span>
+												{% endif %}
+											{% endfor %}
+											{% if product.get_price_discount == product.price %}
+												<span class="price d-block fwEbold">{{ product.price|floatformat:2 }} $</span>
+											{% else %}
+												<span class="price d-block fwEbold"><del>{{ product.price|floatformat:2 }} $</del>{{ product.get_price_discount|floatformat:2 }} $</span>
+											{% endif %}
 										</div>
 									</div>
 								</div>
@@ -105,7 +116,7 @@
 									{% for category in view.get_categories %}
 										<li class="mb-5 overflow-hidden">
 											<input name="category" type="checkbox" value="{{ category.id }}">
-											<a href="javascript:void(0);">{{ category.name }} <span class="num border float-right">6</span></a>
+											<a href="javascript:void(0);">{{ category.name }} <span class="num border float-right">{{ category.get_count_products }}</span></a>
 										</li>
 									{% endfor %}
 								</ul>
@@ -119,7 +130,7 @@
 									<input type="hidden" id="amount1" name="price1">
 									<input type="hidden" id="amount2" name="price2">
 									<div class="get-results-wrap d-flex align-items-center justify-content-between">
-										<button type="submit" class="btn btnTheme btn-shop fwEbold md-round px-3 pt-1 pb-2 text-uppercase">{% trans 'Filter' %}</button>
+										<button type="submit" class="btn btnTheme btn-shop fwEbold md-round px-3 pt-1 pb-2 mt-5 text-uppercase">{% trans 'Filter' %}</button>
 										<p id="amount" class="mb-0"></p>
 									</div>
 							</section>

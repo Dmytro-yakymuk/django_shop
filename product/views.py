@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 
-from .models import Product, Category, Image, Rating
+from .models import Product, Category, Image, Rating, Size
 from .forms import ReviewForm, RatingForm
 
 
@@ -41,7 +41,9 @@ class ProductListView(CategoryGetAll, ListView):
 class ProductFilterView(CategoryGetAll, ListView):
     paginate_by = 2
     def get_queryset(self):
-        queryset = Product.objects.filter(category__in=self.request.GET.getlist("category")).distinct()
+        min_price = self.request.GET.getlist("price1")[0]
+        max_price = self.request.GET.getlist("price2")[0]
+        queryset = Product.objects.filter(category__in=self.request.GET.getlist("category"), price__range=(min_price, max_price)).distinct()
         return queryset
 
     def get_context_data(self, *args, **kwargs):
@@ -50,22 +52,22 @@ class ProductFilterView(CategoryGetAll, ListView):
         return context
 
 
-class JsonProductFilterView(ListView):
-
-    def get_queryset(self):
-        # queryset = Product.objects.filter(
-        #     Q(category__in=self.request.GET.getlist("category")) |
-        #     "price" >= self.request.GET.getlist("price1") &
-        #     "price" <= self.request.GET.getlist("price2")
-        # ).distinct().values("id", "name", "slug", "price")
-        queryset = Product.objects.filter(
-            Q(category__in=self.request.GET.getlist("category"))
-        ).distinct().values("id", "name", "slug", "price")
-        return queryset
-
-    def get(self, request, *args, **kwargs):
-        queryset = list(self.get_queryset())
-        return JsonResponse({"products": queryset}, safe=False)
+# class JsonProductFilterView(ListView):
+#
+#     def get_queryset(self):
+#         # queryset = Product.objects.filter(
+#         #     Q(category__in=self.request.GET.getlist("category")) |
+#         #     "price" >= self.request.GET.getlist("price1") &
+#         #     "price" <= self.request.GET.getlist("price2")
+#         # ).distinct().values("id", "name", "slug", "price")
+#         queryset = Product.objects.filter(
+#             Q(category__in=self.request.GET.getlist("category"))
+#         ).distinct().values("id", "name", "slug", "price")
+#         return queryset
+#
+#     def get(self, request, *args, **kwargs):
+#         queryset = list(self.get_queryset())
+#         return JsonResponse({"products": queryset}, safe=False)
 
 
 class ProductDetailView(DetailView):
@@ -76,6 +78,7 @@ class ProductDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['star_form'] = RatingForm()
         context['form'] = ReviewForm()
+        context['sizes'] = Size.objects.all()
         return context
 
 

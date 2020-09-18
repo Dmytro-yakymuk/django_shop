@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.db.models import Avg
 
 class Category(models.Model):
     name = models.CharField("Категорія", max_length=255)
@@ -7,6 +8,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_count_products(self):
+        return self.product_set.count()
 
     class Meta:
         verbose_name = "Категорія"
@@ -95,6 +99,16 @@ class Product(models.Model):
         else:
             price = self.price
         return price
+
+    def get_general_rating(self):
+        return self.rating_set.aggregate(Avg('star'))
+
+    def get_size_names(self):
+        list_name = []
+        for quantity in self.quantity_set.all():
+            list_name.append(quantity.size.name)
+        return list_name
+
 
     class Meta:
         verbose_name = "Товар"
