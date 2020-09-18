@@ -74,7 +74,6 @@ class Product(models.Model):
     description = models.TextField("Опис")
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     category = models.ManyToManyField(Category)
-    action = models.ManyToManyField(Action, blank=True)
     tag = models.ManyToManyField(Tag, blank=True)
     public = models.BooleanField("Публікація", default=True)
     created_at = models.DateTimeField("Дата створення", auto_now_add=True)
@@ -89,9 +88,28 @@ class Product(models.Model):
     def get_review(self):
         return self.reviews_set.filter(parent__isnull=True)
 
+    def get_price_discount(self):
+        discount = self.productaction_set.filter(product_id=self.id).exclude(value=0).first()
+        if discount:
+            price = self.price - self.price * discount.value / 100
+        else:
+            price = self.price
+        return price
+
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товари"
+
+
+class ProductAction(models.Model):
+    value = models.PositiveIntegerField("Значення", default=0)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    action = models.ForeignKey(Action, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Акція продукта"
+        verbose_name_plural = "Акції продуктів"
+
 
 class Quantity(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

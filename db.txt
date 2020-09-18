@@ -27,10 +27,15 @@ Product
     product_code
     shipping_tax
     description
-    action - M2M
     brand - FK
     tags - M2M
     created_at
+
+
+ProductAction
+    value
+    product - FK
+    action - FK
 
 
 Quantity

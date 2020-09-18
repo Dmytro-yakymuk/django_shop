@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static i18n%}
+{% load static i18n mathfilters %}
 
 {% block header %}
 	{% include 'include/home_header.html ' %}
@@ -80,51 +80,42 @@
 			<p>{% trans 'Lorem ipsum is simply dummy text of the printing and typesetting industry' %}.</p>
 		</header>
 		<div class="col-12 p-0 overflow-hidden d-flex flex-wrap">
-			{% for product in products %}
-			<!-- featureCol -->
-			<div class="featureCol px-3 mb-6">
-				<div class="border">
-					<div class="imgHolder position-relative w-100 overflow-hidden">
-						{% for image in product.image_set.all %}
-							{% if image.root == True %}
-								<img src="{{ image.name.url }}" alt="image description" class="img-fluid w-100">
-							{% endif %}
-						{% endfor %}
-						<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
-							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
-							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
-							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
-							<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
-						</ul>
-					</div>
-					<div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">
-						<span class="title d-block mb-2"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></span>
-						<span class="price d-block fwEbold">{{ product.price|floatformat:2 }} $</span>
-					</div>
-				</div>
-			</div>
-			{% endfor %}
 
-			<!-- featureCol -->
-			<div class="featureCol position-relative px-3 mb-6">
-				<div class="border">
-					<div class="imgHolder position-relative w-100 overflow-hidden">
-						<img src="http://placehold.it/320x355" alt="image description" class="img-fluid w-100">
-						<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
-							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
-							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
-							<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
-							<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
-						</ul>
-					</div>
-					<div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">
-						<span class="title d-block mb-2"><a href="shop-detail.html">Sint Incidunt Utlabore</a></span>
-						<span class="price d-block fwEbold"><del>75.00 $</del>60.50 $</span>
-						<span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">HOT</span>
-						<span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block ml-8">Sale</span>
+			{% for product in products %}
+				<!-- featureCol -->
+				<div class="featureCol position-relative px-3 mb-6">
+					<div class="border">
+						<div class="imgHolder position-relative w-100 overflow-hidden">
+							{% for image in product.image_set.all %}
+								{% if image.root == True %}
+									<img src="{{ image.name.url }}" alt="image description" class="img-fluid w-100">
+								{% endif %}
+							{% endfor %}
+							<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
+								<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
+								<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
+								<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
+								<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
+							</ul>
+						</div>
+						<div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">
+							<span class="title d-block mb-2"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></span>
+
+							{% for productaction in product.productaction_set.all %}
+								{% if productaction.product.id == product.id %}
+									<span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block ml-{% widthratio forloop.counter0 1 8 %}"
+										  style="background-color: {{ productaction.action.color }};">{{ productaction.action.name }}</span>
+								{% endif %}
+							{% endfor %}
+							{% if product.get_price_discount == product.price %}
+								<span class="price d-block fwEbold">{{ product.price|floatformat:2 }} $</span>
+							{% else %}
+								<span class="price d-block fwEbold"><del>{{ product.price|floatformat:2 }} $</del>{{ product.get_price_discount|floatformat:2 }} $</span>
+							{% endif %}
+						</div>
 					</div>
 				</div>
-			</div>
+			{% endfor %}
 
 		</div>
 	</section>

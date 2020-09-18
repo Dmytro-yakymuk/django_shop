@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Color, Size, Action, Brand, Tag, Product, Quantity, Image, RatingStar, Rating, SocialNetwork, Reviews
+from .models import Category, Color, Size, Action, Brand, Tag, Product, ProductAction, Quantity, Image, RatingStar, Rating, SocialNetwork, Reviews
 
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
@@ -112,6 +112,12 @@ class ProductAdmin(TranslationAdmin):
 
     unpublish.short_description = "Снять с публикации"
     unpublish.allowed_permissions = ('change',)
+
+
+@admin.register(ProductAction)
+class ProductActionAdmin(admin.ModelAdmin):
+    list_display = ("id", "product", "action", "value")
+    list_display_links = ("id",)
 
 
 @admin.register(Quantity)

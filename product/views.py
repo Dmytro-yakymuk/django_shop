@@ -8,6 +8,7 @@ from .models import Product, Category, Image, Rating
 from .forms import ReviewForm, RatingForm
 
 
+
 class ProductView(View):
     def get(self, request):
         products = Product.objects.all()
